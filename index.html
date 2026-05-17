@@ -105,12 +105,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             letter-spacing: 1px;
         }
-        .type-btn.active {
-            border-color: #FF8C00 !important;
-            background: linear-gradient(135deg, #FFF8F0 0%, #FFE4CC 100%);
-            color: #FF8C00 !important;
-            box-shadow: 0 2px 10px rgba(255, 140, 0, 0.2);
-        }
         .glass-nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -132,11 +126,9 @@
         .scroll-hide::-webkit-scrollbar { display: none; }
         .scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
-<base target="_blank">
 </head>
 <body class="bg-jeetak-cream text-jeetak-navy smooth-scroll">
 
-    <!-- Header -->
     <header class="fixed top-0 w-full glass-nav shadow-sm z-50 border-b border-orange-100">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -157,7 +149,6 @@
 
     <div class="h-24"></div>
 
-    <!-- Hero Section -->
     <section class="relative bg-gradient-to-br from-jeetak-orange via-orange-500 to-orange-600 text-white py-16 px-4 overflow-hidden">
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, white 2px, transparent 2px), radial-gradient(circle at 80% 50%, white 1px, transparent 1px); background-size: 40px 40px;"></div>
         <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl"></div>
@@ -181,7 +172,6 @@
         </div>
     </section>
 
-    <!-- Contact Info Bar -->
     <div class="bg-jeetak-navy text-white py-4 px-4 shadow-lg relative z-20">
         <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-sm md:text-base font-bold">
             <a href="tel:07750005345" class="flex items-center gap-2 hover:text-jeetak-orange transition">
@@ -201,51 +191,33 @@
         </div>
     </div>
 
-    <!-- Category Quick Nav -->
-    <div class="sticky top-20 z-40 bg-jeetak-cream/95 backdrop-blur-sm border-b border-orange-200 py-3 px-4 shadow-sm">
+    <div id="navBar" class="sticky top-20 z-40 bg-jeetak-cream/95 backdrop-blur-sm border-b border-orange-200 py-3 px-4 shadow-sm">
         <div class="container mx-auto">
             <div class="category-nav flex gap-3 overflow-x-auto pb-1 scroll-hide">
-                <button onclick="scrollToCategory('pizza')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">
-                    🍕 بيتزا
-                </button>
-                <button onclick="scrollToCategory('burger')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">
-                    🍔 بركر
-                </button>
-                <button onclick="scrollToCategory('crispy')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">
-                    🥖 كرسبي
-                </button>
-                <button onclick="scrollToCategory('special')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">
-                    🍗 خاصة
-                </button>
-                <button onclick="scrollToCategory('fries')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">
-                    🍟 مقبلات
-                </button>
-                <button onclick="scrollToCategory('drinks')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">
-                    🥤 مشروبات
-                </button>
+                <button onclick="scrollToCategory('pizza')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">🍕 بيتزا</button>
+                <button onclick="scrollToCategory('burger')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">🍔 بركر</button>
+                <button onclick="scrollToCategory('crispy')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">🥖 كرسبي</button>
+                <button onclick="scrollToCategory('special')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">🍗 خاصة</button>
+                <button onclick="scrollToCategory('fries')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">🍟 مقبلات</button>
+                <button onclick="scrollToCategory('drinks')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm">🥤 مشروبات</button>
             </div>
         </div>
     </div>
 
-    <!-- Menu Container -->
-    <main id="menuContainer" class="container mx-auto px-4 py-10 pb-32">
-        <!-- Injected via JS -->
-    </main>
+    <main id="menuContainer" class="container mx-auto px-4 py-10 pb-32 max-w-4xl">
+        </main>
 
-    <!-- Floating Cart Button -->
     <button onclick="toggleCart()" class="float-btn fixed bottom-6 left-6 z-40 bg-gradient-to-br from-jeetak-orange to-orange-600 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition border-4 border-white">
         <i class="fas fa-shopping-basket"></i>
         <span id="cartCountMobile" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
     </button>
 
-    <!-- Admin Access (Discrete) -->
     <div class="fixed bottom-4 right-4 z-30">
         <button onclick="promptAdmin()" class="bg-gray-800/80 backdrop-blur text-gray-400 hover:text-white p-3 rounded-xl text-xs opacity-40 hover:opacity-100 transition shadow-lg">
             <i class="fas fa-cog"></i>
         </button>
     </div>
 
-    <!-- Cart Modal -->
     <div id="cartModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-end md:items-center justify-center backdrop-blur-sm transition-opacity" onclick="if(event.target===this)toggleCart()">
         <div class="bg-white w-full md:w-[520px] md:rounded-3xl rounded-t-3xl shadow-2xl max-h-[88vh] overflow-y-auto drawer-enter" onclick="event.stopPropagation()">
             <div class="p-6 md:p-8">
@@ -261,14 +233,10 @@
                     </button>
                 </div>
 
-                <div id="cartItems" class="space-y-3 mb-6 max-h-[40vh] overflow-y-auto pr-1">
-                    <!-- Injected -->
-                </div>
-
+                <div id="cartItems" class="space-y-3 mb-6 max-h-[40vh] overflow-y-auto pr-1"></div>
                 <div id="cartEmpty" class="text-center py-12 text-gray-300 hidden">
                     <i class="fas fa-shopping-basket text-7xl mb-4 opacity-30"></i>
                     <p class="text-lg font-bold">السلة فارغة</p>
-                    <p class="text-sm mt-1">أضف بعض الوجبات اللذيذة!</p>
                 </div>
 
                 <div class="border-t-2 border-orange-100 pt-6 space-y-4">
@@ -276,70 +244,70 @@
                         <span class="text-lg font-bold text-jeetak-navy">المجموع الكلي:</span>
                         <span id="cartTotal" class="text-jeetak-orange text-3xl font-black">0 د.ع</span>
                     </div>
-
                     <div class="space-y-3">
-                        <div class="relative">
-                            <i class="fas fa-user absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="text" id="customerName" placeholder="الاسم الكامل" class="input-field w-full pr-12 pl-4 py-4 rounded-xl border-2 border-gray-200 focus:outline-none transition text-right font-bold">
-                        </div>
-                        <div class="relative">
-                            <i class="fas fa-phone absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="tel" id="customerPhone" placeholder="رقم الهاتف" class="input-field w-full pr-12 pl-4 py-4 rounded-xl border-2 border-gray-200 focus:outline-none transition text-right font-bold" dir="ltr">
-                        </div>
-                        <div class="relative">
-                            <i class="fas fa-map-marker-alt absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="text" id="customerAddress" placeholder="العنوان / منطقة التوصيل" class="input-field w-full pr-12 pl-4 py-4 rounded-xl border-2 border-gray-200 focus:outline-none transition text-right font-bold">
-                        </div>
+                        <input type="text" id="customerName" placeholder="الاسم الكامل" class="input-field w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none transition text-right font-bold">
+                        <input type="tel" id="customerPhone" placeholder="رقم الهاتف" class="input-field w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none transition text-right font-bold" dir="ltr">
+                        <input type="text" id="customerAddress" placeholder="العنوان / منطقة التوصيل" class="input-field w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none transition text-right font-bold">
                     </div>
-
-                    <button onclick="sendOrder()" class="w-full btn-primary text-white py-5 rounded-2xl font-black text-lg shadow-xl flex items-center justify-center gap-3 mt-4">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                        إرسال الطلب عبر الواتساب
+                    <button onclick="sendOrder()" class="w-full btn-primary text-white py-4 rounded-2xl font-black text-lg shadow-xl flex items-center justify-center gap-3 mt-4">
+                        <i class="fab fa-whatsapp text-2xl"></i> إرسال الطلب عبر الواتساب
                     </button>
-                    <p class="text-center text-xs text-gray-400 mt-2">سيتم فتح واتساب المطعم تلقائياً مع تفاصيل طلبك</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- QR Code Modal -->
     <div id="qrModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="if(event.target===this)closeQR()">
         <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center modal-enter" onclick="event.stopPropagation()">
-            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-qrcode text-jeetak-orange text-3xl"></i>
-            </div>
+            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-qrcode text-jeetak-orange text-3xl"></i></div>
             <h3 class="text-2xl font-black text-jeetak-navy mb-2">رمز QR للمنيو</h3>
-            <p class="text-gray-500 mb-6 text-sm">امسح الرمز بالكاميرا للوصول الفوري للمنيو</p>
             <div id="qrcode" class="flex justify-center mb-6 bg-white p-2 rounded-2xl"></div>
-            <div class="bg-gray-50 rounded-xl p-3 mb-6">
-                <p class="text-xs text-gray-500">مناسب للطباعة على الطاولات وكارتات التوصيل</p>
-            </div>
-            <button onclick="closeQR()" class="w-full bg-gray-100 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-200 transition">
-                إغلاق
-            </button>
+            <button onclick="closeQR()" class="w-full bg-gray-100 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-200 transition">إغلاق</button>
         </div>
     </div>
 
-    <!-- Admin Password Modal -->
     <div id="passwordModal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="if(event.target===this)closePassword()">
         <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center modal-enter" onclick="event.stopPropagation()">
-            <div class="w-20 h-20 bg-jeetak-navy rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-lock text-white text-3xl"></i>
-            </div>
+            <div class="w-20 h-20 bg-jeetak-navy rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-lock text-white text-3xl"></i></div>
             <h3 class="text-2xl font-black text-jeetak-navy mb-2">لوحة التحكم</h3>
-            <p class="text-gray-500 mb-6 text-sm">أدخل كلمة المرور للوصول</p>
-            <input type="password" id="adminPassword" placeholder="••••••" class="input-field w-full px-4 py-4 rounded-xl border-2 border-gray-200 focus:outline-none transition text-center text-2xl tracking-widest font-bold mb-4" onkeypress="if(event.key==='Enter')checkPassword()">
-            <button onclick="checkPassword()" class="w-full btn-primary text-white py-4 rounded-xl font-black text-lg">
-                دخول
-            </button>
-            <button onclick="closePassword()" class="w-full mt-3 text-gray-400 hover:text-gray-600 py-2 text-sm font-bold transition">
-                إلغاء
-            </button>
+            <input type="password" id="adminPassword" placeholder="••••••" class="input-field w-full px-4 py-3 rounded-xl border-2 border-gray-200 text-center text-xl font-bold mb-4">
+            <button onclick="checkPassword()" class="w-full btn-primary text-white py-3 rounded-xl font-black">دخول</button>
         </div>
     </div>
 
-    <!-- Admin Dashboard Modal -->
     <div id="adminModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="if(event.target===this)closeAdmin()">
-        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-5xl max-h-[92vh] overflow-y-auto modal-enter" onclick="event.stopPropagation()">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto modal-enter" onclick="event.stopPropagation()">
             <div class="p-6 md:p-8">
-                <div class="flex justify-between items-center mb-8 bord
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <h3 class="text-2xl font-black text-jeetak-navy">إدارة توفر الوجبات</h3>
+                    <button onclick="closeAdmin()" class="w-10 h-10 bg-gray-100 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full flex items-center justify-center transition"><i class="fas fa-times"></i></button>
+                </div>
+                <div id="adminItemsList" class="space-y-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // داتابيز الوجبات الكاملة للمطعم
+        const menuData = {
+            pizza: { title: "🍕 قسم البيتزا", items: [
+                { id: "p1", name: "بيتزا مشكل", price: 8000, desc: "خلطة الشيف المميزة", available: true },
+                { id: "p2", name: "بيتزا لحم", price: 8000, desc: "لحم فريش مفروم", available: true },
+                { id: "p3", name: "بيتزا ببروني", price: 8000, desc: "شرائح ببروني بقري وجبن", available: true },
+                { id: "p4", name: "بيتزا دجاج", price: 7000, desc: "قطع دجاج متبلة", available: true },
+                { id: "p5", name: "بيتزا خضار", price: 7000, desc: "خضروات مشكلة فريش", available: true },
+                { id: "p6", name: "بيتزا ماركريتا", price: 6000, desc: "صلصة إيطالية مع جبن موزاريلا غني", available: true }
+            ]},
+            burger: { title: "🍔 قسم البركر", items: [
+                { id: "b1", name: "بركر كلاسك", prices: { "سندويش": 3500, "وجبة": 5500 }, available: true },
+                { id: "b2", name: "بركر جيتك", prices: { "سندويش": 5500, "وجبة": 7000 }, available: true },
+                { id: "b3", name: "تكساس بركر", prices: { "سندويش": 4500, "وجبة": 6000 }, available: true },
+                { id: "b4", name: "هالبينو بركر", prices: { "سندويش": 4500, "وجبة": 6000 }, available: true },
+                { id: "b5", name: "بركر دجاج مقرمش", prices: { "سندويش": 4500, "وجبة": 6000 }, available: true }
+            ]},
+            crispy: { title: "🥖 قسم سندويش كرسبي", items: [
+                { id: "c1", name: "كرسبي كلاسك", prices: { "سندويش": 5000, "وجبة": 7000 }, available: true },
+                { id: "c2", name: "كرسبي زنجر", prices: { "سندويش": 5000, "وجبة": 7000 }, available: true },
+                { id: "c3", name: "كرسبي سماش", prices: { "سندويش": 5000, "وجبة": 7000 }, available: true },
+                { id: "c4", name: "كرسبي جيتك", prices: { "سندويش": 5000, "وجبة": 7000 }, available: true },
+                { id: "c5", name: "رول كرسبي", prices: { "سندويش": 5000, "وجبة": 7
