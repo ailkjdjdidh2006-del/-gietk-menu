@@ -2,12 +2,25 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>مطعم جيتك | Jeetak Restaurant Menu</title>
+    <meta name="description" content="منيو مطعم جيتك - بيتزا، بركر، كرسبي، وجبات خاصة، مقبلات ومشروبات. توصيل سريع للمنازل في مجمع بوابة الكاظمية.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍔</text></svg>">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04lRsSWjPcyh+vLjwB8bL7b9pmb+O7dHUQcd2Q+J1B4+iqC+J6gSw/0fU0L6Q5+5e5e5e5e5" crossorigin="anonymous"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -15,11 +28,11 @@
                     colors: {
                         jeetak: {
                             orange: '#FF8C00',
-                            darkOrange: '#E67E20',
+                            darkOrange: '#E67E00',
                             navy: '#0F2C59',
                             light: '#FFF8F0',
-                            cream: '#FFFFF5',
-                            gold: '#FFD700'
+                            cream: '#FFFBF5',
+                            gold: '#FFB800'
                         }
                     },
                     fontFamily: {
@@ -30,249 +43,305 @@
         }
     </script>
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #FFFFF5; }
+        * { -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Cairo', sans-serif; background-color: #FFFBF5; overscroll-behavior-y: none; }
         .menu-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .menu-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(255,140,0,0.12); }
         .cart-badge { animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes popIn { 0% { transform: scale(0); } 70% { transform: scale(1.2); } 100% { transform: scale(1); } }
-        .section-header { background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 50%, #E67E20 100%); position: relative; overflow: hidden; }
-        .section-header::after { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54 48c-2 0-3 1-4 2v4c0 1-1 2-2 2H4c-1 0-2-1-2-2v-4c0-1-1-2-4-2v-2c3 0 4-1 4-2v-4c0-1 1-2 2-2h44c1 0 2 1 2 2v4c0 1 1 2 4 2v2zM30 20c-2 0-3 1-4 2v4c0 1-1 2-2 2H4c-1 0-2-1-2-2v-4c0-1-1-2-4-2v-2c3 0 4-1 4-2v-4c0-1 1-2 2-2h20c1 0 2 1 2 2v4c0 1 1 2 4 2v2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E"); }
-        .price-tag { background: linear-gradient(135deg, #0F2C59 0%, #1a3a6e 100%); box-shadow: 0 4px 15px rgba(15, 44, 89, 0.3); }
-        .btn-primary { background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%); transition: all 0.3s; position: relative; overflow: hidden; }
-        .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: 0.5s; }
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        .section-header {
+            background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 50%, #E67E00 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .price-tag {
+            background: linear-gradient(135deg, #0F2C59 0%, #1a3a6e 100%);
+            box-shadow: 0 4px 15px rgba(15, 44, 89, 0.3);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #FF8C00 0%, #FF6B00 100%);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
         .btn-primary:hover::before { left: 100%; }
-        .btn-primary:hover { background: linear-gradient(135deg, #FF6B00 0%, #E67E20 100%); transform: scale(1.03); box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4); }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #FF6B00 0%, #E67E00 100%);
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+        }
+        .btn-primary:active { transform: scale(0.97); }
         .modal-enter { animation: modalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        @keyframes modalIn { from { opacity: 0; transform: scale(0.85) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-        .drawer-enter { animation: drawerIn 0.35s cubic-bezier(0.32, 0.94, 0.6, 1); }
-        @keyframes drawerIn { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.85) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .drawer-enter { animation: drawerIn 0.35s cubic-bezier(0.32, 0.72, 0, 1); }
+        @keyframes drawerIn {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .unavailable { 
+            opacity: 0.45; 
+            pointer-events: none; 
+            position: relative;
+            filter: grayscale(0.6);
+        }
+        .unavailable::after {
+            content: 'غير متوفر';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) rotate(-12deg);
+            background: #dc2626;
+            color: white;
+            padding: 6px 24px;
+            font-weight: 900;
+            font-size: 1.3rem;
+            border-radius: 6px;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+        .type-btn.active {
+            border-color: #FF8C00 !important;
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFE4CC 100%);
+            color: #FF8C00 !important;
+            box-shadow: 0 2px 10px rgba(255, 140, 0, 0.2);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .float-btn {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .input-field:focus {
+            border-color: #FF8C00;
+            box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.1);
+            outline: none;
+        }
+        .smooth-scroll { scroll-behavior: smooth; }
+        .category-nav::-webkit-scrollbar { height: 6px; }
+        .category-nav::-webkit-scrollbar-thumb { background: #FF8C00; border-radius: 3px; }
+        .scroll-hide::-webkit-scrollbar { display: none; }
+        .scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Prevent zoom on input focus for iOS */
+        @supports (-webkit-touch-callout: none) {
+            input, select, textarea { font-size: 16px; }
+        }
     </style>
+<base target="_blank">
 </head>
-<body class="text-gray-800 antialiased selection:background-jeetak-orange selection:text-white" onclick="closeAllPopups(event)">
+<body class="bg-jeetak-cream text-jeetak-navy smooth-scroll">
 
-    <div id="floating-cart" class="fixed bottom-6 left-6 z-40 hidden">
-        <button onclick="event.stopPropagation(); toggleCartDrawer()" class="relative flex items-center justify-center w-16 height-16 rounded-full bg-jeetak-orange text-white shadow-2xl hover:bg-jeetak-darkOrange transform hover:scale-110 transition-all border-4 border-white">
-            <i class="fa-solid fa-basket-shopping text-2xl"></i>
-            <span id="cart-count-badge" class="cart-badge absolute -top-2 -right-2 bg-jeetak-navy text-white text-xs font-bold w-6 height-6 rounded-full flex items-center justify-center border-2 border-white shadow">0</span>
-        </button>
-    </div>
-
-    <header class="relative bg-white shadow-sm border-b border-orange-50 overflow-hidden">
-        <div class="max-w-md mx-auto px-5 py-6 flex flex-col items-center text-center">
-            <div class="w-24 height-24 bg-gradient-to-tr from-jeetak-orange to-amber-400 rounded-full p-1.5 shadow-xl shadow-orange-500/10 mb-4 transform hover:rotate-6 transition-all duration-500">
-                <div class="w-full height-full bg-white rounded-full flex items-center justify-center overflow-hidden">
-                    <span class="text-3xl font-extrabold text-jeetak-orange tracking-tighter">جيتك</span>
+    <!-- Header -->
+    <header class="fixed top-0 w-full glass-nav shadow-sm z-50 border-b border-orange-100">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-14 h-14 bg-gradient-to-br from-jeetak-orange to-orange-600 rounded-2xl flex items-center justify-center text-white font-black text-2xl shadow-lg transform -rotate-3 select-none">
+                    جـ
+                </div>
+                <div>
+                    <h1 class="text-3xl font-black text-jeetak-navy leading-none tracking-tight">جيتك</h1>
+                    <p class="text-sm text-jeetak-orange font-bold tracking-widest">JEETAK</p>
                 </div>
             </div>
-            <h1 class="text-2xl font-black text-jeetak-navy mb-1 flex items-center gap-2">مطعم جيتك <span class="text-jeetak-orange text-sm font-bold bg-orange-50 px-2 py-0.5 rounded-full border border-orange-100">Fresh Food</span></h1>
-            <p class="text-xs font-medium text-gray-400 mb-4 flex items-center gap-1.5"><i class="fa-solid fa-star text-jeetak-gold"></i> طعم لا يقاوم وجودة تستحقها</p>
-            
-            <div class="flex flex-wrap justify-center gap-2 w-full mt-1">
-                <button onclick="scrollToMenu()" class="btn-primary flex-1 min-w-[140px] text-white font-bold py-3 px-4 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg shadow-orange-500/20">
-                    <i class="fa-solid fa-utensils"></i> تصفح المنيو
-                </button>
-                <button onclick="event.stopPropagation(); openQRModal()" class="bg-jeetak-navy text-white font-bold py-3 px-4 rounded-xl text-sm hover:bg-slate-800 transition flex items-center justify-center gap-2 shadow-lg shadow-slate-900/10">
-                    <i class="fa-solid fa-qrcode"></i> رمز QR
-                </button>
-            </div>
-
-            <div class="w-full grid grid-cols-2 gap-2 mt-4 bg-slate-50 p-2 rounded-xl border border-slate-100">
-                <a href="tel:07750005345" class="flex items-center justify-center gap-2 py-2 text-xs font-bold text-jeetak-navy hover:text-jeetak-orange bg-white rounded-lg shadow-2xs border border-slate-200/60 transition">
-                    <i class="fa-solid fa-phone text-jeetak-orange"></i> 07750005345
-                </a>
-                <a href="tel:07850005345" class="flex items-center justify-center gap-2 py-2 text-xs font-bold text-jeetak-navy hover:text-jeetak-orange bg-white rounded-lg shadow-2xs border border-slate-200/60 transition">
-                    <i class="fa-solid fa-mobile-button text-jeetak-orange"></i> 07850005345
-                </a>
-            </div>
-            <div class="w-full mt-2 flex items-center justify-center gap-1.5 text-xs font-bold text-slate-600 bg-amber-50/60 border border-amber-100/80 py-2.5 px-3 rounded-xl">
-                <i class="fa-solid fa-location-dot text-jeetak-orange animate-bounce"></i> مجمع بوابة الكاظمية - الشارع التجاري
-            </div>
+            <button onclick="toggleCart()" class="relative p-3 hover:bg-orange-50 rounded-2xl transition group" aria-label="سلة التسوق">
+                <i class="fas fa-shopping-basket text-3xl text-jeetak-orange group-hover:scale-110 transition-transform"></i>
+                <span id="cartCount" class="cart-badge absolute -top-1 -left-1 bg-red-500 text-white text-xs font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
+            </button>
         </div>
     </header>
 
-    <nav class="sticky top-0 bg-white/90 backdrop-blur-md shadow-sm z-30 border-b border-slate-100">
-        <div class="max-w-md mx-auto px-4 py-3 overflow-x-auto whitespace-nowrap scrollbar-none flex gap-2.5">
-            <button onclick="filterCategory('all')" id="cat-all" class="category-btn active px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all border flex items-center gap-1.5 bg-jeetak-orange text-white border-jeetak-orange shadow-md shadow-orange-500/10">🎯 الكل</button>
-            <button onclick="filterCategory('pizza')" id="cat-pizza" class="category-btn px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all border flex items-center gap-1.5 bg-white text-slate-600 border-slate-200/80 hover:border-orange-200">🍕 بيتزا</button>
-            <button onclick="filterCategory('burger')" id="cat-burger" class="category-btn px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all border flex items-center gap-1.5 bg-white text-slate-600 border-slate-200/80 hover:border-orange-200">🍔 بركر</button>
-            <button onclick="filterCategory('crispy')" id="cat-crispy" class="category-btn px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all border flex items-center gap-1.5 bg-white text-slate-600 border-slate-200/80 hover:border-orange-200">🥖 كرسبي</button>
-        </div>
-    </nav>
+    <div class="h-24"></div>
 
-    <main id="menu-section" class="max-w-md mx-auto px-4 py-6 mb-24">
-        <div id="menu-container" class="grid grid-cols-1 gap-5">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-jeetak-orange via-orange-500 to-orange-600 text-white py-16 px-4 overflow-hidden select-none">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 20% 50%, white 2px, transparent 2px), radial-gradient(circle at 80% 50%, white 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl"></div>
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-yellow-300 opacity-20 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto text-center relative z-10">
+            <div class="inline-block mb-4 px-4 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-bold border border-white/30">
+                <i class="fas fa-fire mr-1"></i> توصيل سريع للمنازل
             </div>
-    </main>
+            <h2 class="text-5xl md:text-6xl font-black mb-3 drop-shadow-lg">مطعم جيتك</h2>
+            <p class="text-xl md:text-2xl opacity-95 mb-8 font-medium">طعم لا يُنسى... بجودة تستحق الثقة</p>
 
-    <div id="qr-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl p-6 w-full max-w-xs text-center shadow-2xl border border-slate-100 modal-enter" onclick="event.stopPropagation()">
-            <h3 class="text-lg font-black text-jeetak-navy mb-1">شارك المنيو الإلكتروني</h3>
-            <p class="text-xs text-gray-400 mb-4">امسح الكود لفتح منيو مطعم جيتك فوراً</p>
-            <div id="qrcode" class="flex justify-center p-3 bg-slate-50 rounded-xl border border-slate-100 mb-4 shadow-inner"></div>
-            <button onclick="closeQRModal()" class="w-full bg-slate-100 text-slate-700 font-bold py-2.5 rounded-xl text-xs hover:bg-slate-200 transition">إغلاق النافذة</button>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <button onclick="scrollToMenu()" class="bg-white text-jeetak-orange px-8 py-4 rounded-2xl font-black text-lg shadow-xl hover:shadow-2xl transition transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                    <i class="fas fa-utensils"></i> تصفح المنيو
+                </button>
+                <button onclick="showQR()" class="bg-jeetak-navy text-white px-8 py-4 rounded-2xl font-black text-lg shadow-xl hover:shadow-2xl transition transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                    <i class="fas fa-qrcode"></i> رمز QR
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Bar -->
+    <div class="bg-jeetak-navy text-white py-4 px-4 shadow-lg relative z-20">
+        <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-sm md:text-base font-bold">
+            <a href="tel:07750005345" class="flex items-center gap-2 hover:text-jeetak-orange transition">
+                <i class="fas fa-phone-alt text-jeetak-orange text-lg"></i>
+                <span>07750005345</span>
+            </a>
+            <span class="hidden md:inline text-jeetak-orange/50">|</span>
+            <a href="tel:07850005345" class="flex items-center gap-2 hover:text-jeetak-orange transition">
+                <i class="fas fa-mobile-alt text-jeetak-orange text-lg"></i>
+                <span>07850005345</span>
+            </a>
+            <span class="hidden md:inline text-jeetak-orange/50">|</span>
+            <span class="flex items-center gap-2">
+                <i class="fas fa-map-marker-alt text-jeetak-orange text-lg"></i>
+                <span>مجمع بوابة الكاظمية - الشارع التجاري</span>
+            </span>
         </div>
     </div>
 
-    <div id="cart-drawer" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-end justify-center">
-        <div class="bg-white rounded-t-3xl w-full max-w-md p-5 max-height-[85vh] flex flex-col shadow-2xl drawer-enter" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center pb-4 border-b border-slate-100 mb-3">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-basket-shopping text-jeetak-orange text-lg"></i>
-                    <h3 class="font-black text-jeetak-navy">طلباتك الحالية</h3>
-                </div>
-                <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-slate-600 bg-slate-50 w-8 height-8 rounded-full flex items-center justify-center border border-slate-200/50"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <div id="cart-items-list" class="flex-1 overflow-y-auto space-y-3 pr-1 max-height-[40vh]">
-                </div>
-
-            <div class="border-t border-slate-100 pt-4 mt-3 space-y-4">
-                <div class="flex justify-between items-center bg-orange-50/50 p-3 rounded-xl border border-orange-100/40">
-                    <span class="text-sm font-black text-jeetak-navy">الحساب الإجمالي الكلي:</span>
-                    <span id="cart-total-price" class="text-lg font-black text-jeetak-orange">0 د.ع</span>
-                </div>
-                <button onclick="sendOrderToWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white font-black py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg shadow-green-500/20 transition-all transform active:scale-95">
-                    <i class="fa-brands fa-whatsapp text-lg"></i> إرسال الطلب عبر الواتساب ومباشرة
+    <!-- Category Quick Nav -->
+    <div class="sticky top-20 z-40 bg-jeetak-cream/95 backdrop-blur-sm border-b border-orange-200 py-3 px-4 shadow-sm">
+        <div class="container mx-auto">
+            <div class="category-nav flex gap-3 overflow-x-auto pb-1 scroll-hide">
+                <button onclick="scrollToCategory('pizza')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm active:scale-95">
+                    🍕 بيتزا
+                </button>
+                <button onclick="scrollToCategory('burger')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm active:scale-95">
+                    🍔 بركر
+                </button>
+                <button onclick="scrollToCategory('crispy')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm active:scale-95">
+                    🥖 كرسبي
+                </button>
+                <button onclick="scrollToCategory('special')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm active:scale-95">
+                    🍗 خاصة
+                </button>
+                <button onclick="scrollToCategory('fries')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm active:scale-95">
+                    🍟 مقبلات
+                </button>
+                <button onclick="scrollToCategory('drinks')" class="whitespace-nowrap px-5 py-2 bg-white border-2 border-orange-200 rounded-full font-bold text-sm hover:border-jeetak-orange hover:text-jeetak-orange transition shadow-sm active:scale-95">
+                    🥤 مشروبات
                 </button>
             </div>
         </div>
     </div>
 
-    <script>
-        // مصفوفة الوجبات الرسمية لمطعم جيتك
-        const foodItems = [
-            // قسم البركر
-            { id: 1, name: "بركر لحم سبيشال", category: "burger", price: 6500, desc: "شريحة لحم عراقي فاخر، جبنة شيدر سائبة، خضار طازجة، صوص جيتك السري المميز.", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format&fit=crop&q=60" },
-            { id: 2, name: "بركر دجاج مقرمش", category: "burger", price: 5500, desc: "صدر دجاج مقرمش ومتبل، خس، مايونيز بالثوم، مع خبز البركر الهش الطازج.", image: "https://images.unsplash.com/photo-1625813506062-0aeb1d7a094b?w=500&auto=format&fit=crop&q=60" },
-            { id: 3, name: "تاور بركر العملاق", category: "burger", price: 8500, desc: "طبقتين من اللحم أو الدجاج مع دبل جبن، حلقات بصل مقرمشة، بيف بيكون فاخر.", image: "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=500&auto=format&fit=crop&q=60" },
-            
-            // قسم البيتزا
-            { id: 4, name: "بيتزا جيتك الخاصة", category: "pizza", price: 9000, desc: "خلطة لحم وموزاريلا إيطالية، فلفل ملون، زيتون، فطر، مع صلصة الطماطم الغنية.", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&auto=format&fit=crop&q=60" },
-            { id: 5, name: "بيتزا بيبروني", category: "pizza", price: 8000, desc: "شرائح بيبروني البقري الفاخر، كمية مضاعفة من جبنة الموزاريلا الغنية، أوريغانو بري.", image: "https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=500&auto=format&fit=crop&q=60" },
-            { id: 6, name: "بيتزا خضار صحية", category: "pizza", price: 7000, desc: "تشكيلة خضار طازجة (فطر، زيتون، فلفل أخضر، ذرة حلوة، طماطم) وجبن موزاريلا.", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=60" },
-            
-            // قسم الكرسبي
-            { id: 7, name: "وجبة كرسبي فيليه", category: "crispy", price: 7500, desc: "4 قطع فيليه دجاج مقرمش كبير، بطاطا ذهبية، صوص ثومية، خبز طازج صاج وكولسلو.", image: "https://images.unsplash.com/photo-1562967914-608f82629710?w=500&auto=format&fit=crop&q=60" },
-            { id: 8, name: "أصابع الموزاريلا المقرمشة", category: "crispy", price: 4000, desc: "5 قطع من أصابع جبنة الموزاريلا المغطاة بالبقسماط المتبل، تقدم ذهبية وساخنة جداً.", image: "https://images.unsplash.com/photo-1531749668029-2db88e4b76ce?w=500&auto=format&fit=crop&q=60" }
-        ];
+    <!-- Menu Container -->
+    <main id="menuContainer" class="container mx-auto px-4 py-10 pb-32">
+        <!-- Injected via JS -->
+    </main>
 
-        let cart = [];
+    <!-- Floating Cart Button -->
+    <button onclick="toggleCart()" class="float-btn fixed bottom-6 left-6 z-40 bg-gradient-to-br from-jeetak-orange to-orange-600 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 active:scale-90 transition border-4 border-white" aria-label="فتح السلة">
+        <i class="fas fa-shopping-basket"></i>
+        <span id="cartCountMobile" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
+    </button>
 
-        // دالة توليد وعرض الوجبات تلقائياً بالواجهة
-        function renderMenu(items) {
-            const container = document.getElementById('menu-container');
-            container.innerHTML = '';
-            
-            if(items.length === 0) {
-                container.innerHTML = `<div class="text-center py-12 text-gray-400 font-bold text-sm bg-white rounded-2xl border border-dashed border-slate-200">لا توجد وجبات في هذا القسم حالياً.</div>`;
-                return;
-            }
+    <!-- Admin Access (Discrete) -->
+    <div class="fixed bottom-4 right-4 z-30">
+        <button onclick="promptAdmin()" class="bg-gray-800/80 backdrop-blur text-gray-400 hover:text-white p-3 rounded-xl text-xs opacity-40 hover:opacity-100 transition shadow-lg" aria-label="لوحة التحكم">
+            <i class="fas fa-cog"></i>
+        </button>
+    </div>
 
-            items.forEach(item => {
-                const card = document.createElement('div');
-                card.className = "menu-card bg-white rounded-2xl overflow-hidden shadow-xs border border-slate-100/70 flex flex-col";
-                card.innerHTML = `
-                    <div class="relative w-full height-48 bg-slate-100 overflow-hidden">
-                        <img src="${item.image}" alt="${item.name}" class="w-full height-full object-cover transform hover:scale-105 transition duration-500" loading="lazy">
-                        <span class="absolute top-3 right-3 text-white text-xs font-black px-3 py-1.5 rounded-xl price-tag">${item.price.toLocaleString()} د.ع</span>
-                    </div>
-                    <div class="p-4 flex-1 flex flex-col justify-between">
-                        <div>
-                            <h3 class="font-black text-slate-800 text-base mb-1.5">${item.name}</h3>
-                            <p class="text-xs text-gray-500 leading-relaxed mb-4 line-clamp-2">${item.desc}</p>
+    <!-- Cart Modal -->
+    <div id="cartModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-end md:items-center justify-center backdrop-blur-sm" onclick="if(event.target===this)toggleCart()">
+        <div class="bg-white w-full md:w-[520px] md:rounded-3xl rounded-t-3xl shadow-2xl max-h-[88vh] overflow-y-auto drawer-enter" onclick="event.stopPropagation()">
+            <div class="p-6 md:p-8">
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-shopping-basket text-jeetak-orange text-xl"></i>
                         </div>
-                        <button onclick="addToCart(${item.id})" class="w-full bg-slate-50 hover:bg-jeetak-orange hover:text-white text-jeetak-navy font-extrabold py-2.5 px-4 rounded-xl text-xs border border-slate-200/80 hover:border-jeetak-orange flex items-center justify-center gap-2 transition-all active:scale-98">
-                            <i class="fa-solid fa-plus-minus text-sm"></i> إضافة إلى الطلبات
-                        </button>
+                        <h3 class="text-2xl font-black text-jeetak-navy">سلة التسوق</h3>
                     </div>
-                `;
-                container.appendChild(card);
-            });
-        }
+                    <button onclick="toggleCart()" class="w-10 h-10 bg-gray-100 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-full flex items-center justify-center transition active:scale-90">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
+                </div>
 
-        // دالة تصفية الأكلات حسب القسم المختار
-        function filterCategory(cat) {
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.className = "category-btn px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all border flex items-center gap-1.5 bg-white text-slate-600 border-slate-200/80 hover:border-orange-200";
-            });
-            
-            const activeBtn = document.getElementById(`cat-${cat}`);
-            if(activeBtn) {
-                activeBtn.className = "category-btn active px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all border flex items-center gap-1.5 bg-jeetak-orange text-white border-jeetak-orange shadow-md shadow-orange-500/10";
-            }
+                <div id="cartItems" class="space-y-3 mb-6 max-h-[40vh] overflow-y-auto pr-1">
+                    <!-- Injected -->
+                </div>
 
-            if(cat === 'all') {
-                renderMenu(foodItems);
-            } else {
-                const filtered = foodItems.filter(item => item.category === cat);
-                renderMenu(filtered);
-            }
-        }
+                <div id="cartEmpty" class="text-center py-12 text-gray-300 hidden">
+                    <i class="fas fa-shopping-basket text-7xl mb-4 opacity-30"></i>
+                    <p class="text-lg font-bold">السلة فارغة</p>
+                    <p class="text-sm mt-1">أضف بعض الوجبات اللذيذة!</p>
+                </div>
 
-        // التحكم بإضافة المواد للسلة والعدادات
-        function addToCart(id) {
-            const item = foodItems.find(p => p.id === id);
-            const exist = cart.find(c => c.id === id);
-            
-            if(exist) {
-                exist.qty++;
-            } else {
-                cart.push({ ...item, qty: 1 });
-            }
-            updateCart();
-        }
-
-        function changeQty(id, change) {
-            const item = cart.find(c => c.id === id);
-            if(!item) return;
-            item.qty += change;
-            if(item.qty <= 0) {
-                cart = cart.filter(c => c.id !== id);
-            }
-            updateCart();
-        }
-
-        function updateCart() {
-            const cartCount = document.getElementById('cart-count-badge');
-            const floatingCart = document.getElementById('floating-cart');
-            const itemsList = document.getElementById('cart-items-list');
-            const totalText = document.getElementById('cart-total-price');
-            
-            const totalItems = cart.reduce((acc, curr) => acc + curr.qty, 0);
-            const totalPrice = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
-
-            cartCount.innerText = totalItems;
-            totalText.innerText = totalPrice.toLocaleString() + " د.ع";
-
-            if(totalItems > 0) {
-                floatingCart.classList.remove('hidden');
-            } else {
-                floatingCart.classList.add('hidden');
-                document.getElementById('cart-drawer').classList.add('hidden');
-            }
-
-            itemsList.innerHTML = '';
-            cart.forEach(item => {
-                const row = document.createElement('div');
-                row.className = "flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-100";
-                row.innerHTML = `
-                    <div>
-                        <h4 class="text-xs font-black text-jeetak-navy">${item.name}</h4>
-                        <span class="text-[11px] font-bold text-jeetak-orange">${(item.price * item.qty).toLocaleString()} د.ع</span>
+                <div class="border-t-2 border-orange-100 pt-6 space-y-4">
+                    <div class="flex justify-between items-center bg-orange-50 p-4 rounded-2xl">
+                        <span class="text-lg font-bold text-jeetak-navy">المجموع الكلي:</span>
+                        <span id="cartTotal" class="text-jeetak-orange text-3xl font-black">0 د.ع</span>
                     </div>
-                    <div class="flex items-center gap-2.5 bg-white px-2 py-1 rounded-lg border border-slate-200">
-                        <button onclick="changeQty(${item.id}, -1)" class="text-slate-500 font-bold text-sm px-1.5">-</button>
-                        <span class="text-xs font-black text-slate-800 min-w-[12px] text-center">${item.qty}</span>
-                        <button onclick="changeQty(${item.id}, 1)" class="text-slate-500 font-bold text-sm px-1.5">+</button>
-                    </div>
-                `;
-                itemsList.appendChild(row);
-            });
-        }
 
-        // إرسال كليشة الطلب إلى واتساب المطعم مباشرة
-        function sendOrderToWhatsApp() {
-            if(cart.length === 0) return;
-            let text = "*طلب جديد من المنيو الإلكتروني لمطعم جيتك*\n";
-            text += "=========================\n";
-            cart.forEa
+                    <div class="space-y-3">
+                        <div class="relative">
+                            <i class="fas fa-user absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                            <input type="text" id="customerName" placeholder="الاسم الكامل" autocomplete="name" class="input-field w-full pr-12 pl-4 py-4 rounded-xl border-2 border-gray-200 transition text-right font-bold bg-white">
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-phone absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                            <input type="tel" id="customerPhone" placeholder="رقم الهاتف" autocomplete="tel" class="input-field w-full pr-12 pl-4 py-4 rounded-xl border-2 border-gray-200 transition text-right font-bold bg-white" dir="ltr">
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-map-marker-alt absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
+                            <input type="text" id="customerAddress" placeholder="العنوان / منطقة التوصيل" autocomplete="street-address" class="input-field w-full pr-12 pl-4 py-4 rounded-xl border-2 border-gray-200 transition text-right font-bold bg-white">
+                        </div>
+                    </div>
+
+                    <button onclick="sendOrder()" class="w-full btn-primary text-white py-5 rounded-2xl font-black text-lg shadow-xl flex items-center justify-center gap-3 mt-4 active:scale-95 transition-transform">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        إرسال الطلب عبر الواتساب
+                    </button>
+                    <p class="text-center text-xs text-gray-400 mt-2">سيتم فتح واتساب المطعم تلقائياً مع تفاصيل طلبك</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="if(event.target===this)closeQR()">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full text-center modal-enter" onclick="event.stopPropagation()">
+            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-qrcode text-jeetak-orange text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-black text-jeetak-navy mb-2">رمز QR للمنيو</h3>
+            <p class="text-gray-500 mb-6 text-sm">امسح الرمز بالكاميرا للوصول الفوري للمنيو</p>
+            <div id="qrcode" class="flex justify-center mb-6 bg-white p-2 rounded-2xl"></div>
+            <div class="bg-gray-50 rounded-xl p-3 mb-6">
+                <p class="text-xs text-gray-500">مناسب للطباعة على الطاولات وكارتات التوصيل</p>
+            </div>
+            <button onclick="closeQR()" class="w-full bg-gray-100 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-200 transition active:scale-95">
+                إغلاق
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Password Modal -->
+    <div id="passwordModal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-c
